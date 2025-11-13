@@ -1,32 +1,35 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+// src/i18n.js
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
-// Initialize i18next with basic configuration
+// Import JSON translations from assets
+import en from "./assets/translations/en.json";
+import hi from "./assets/translations/hi.json";
+import ar from "./assets/translations/ar.json";
+import pl from "./assets/translations/pl.json";
+import zh from "./assets/translations/zh.json";
+
 i18n
-  .use(initReactI18next) // Passes i18n to react-i18next
+  .use(LanguageDetector) // Detect language
+  .use(initReactI18next) // Bind with React
   .init({
-    fallbackLng: 'en', // Default language
-    debug: false, // Disable debug logging
-
     resources: {
-      en: {
-        translation: {
-          welcome: 'Welcome',
-          query_prompt: 'Ask me anything!',
-          error_message: "Couldn't connect to chatbot! Please try later."
-        }
-      },
-      fr: {
-        translation: {
-          welcome: 'Bienvenue',
-          query_prompt: 'Demandez-moi tout!',
-          error_message: "Impossible de se connecter au chatbot! Veuillez réessayer plus tard."
-        }
-      }
+      en: { translation: en },
+      hi: { translation: hi },
+      ar: { translation: ar },
+      pl: { translation: pl },
+      zh: { translation: zh },
     },
+    lng: localStorage.getItem("lang") || "en", // Default language
+    fallbackLng: "en",
     interpolation: {
-      escapeValue: false // React already escapes values
-    }
+      escapeValue: false, // React already handles escaping
+    },
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"], // Store user choice in localStorage
+    },
   });
 
 export default i18n;

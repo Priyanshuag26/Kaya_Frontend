@@ -1,0 +1,161 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.error-message {
+  color: rgb(9, 255, 0);
+  border: 2px solid red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Overlay background */
+
+/* Form container */
+.user-form {
+  padding: 20px;
+  position: relative;
+  z-index: 9999;
+  width: 90%;
+  max-width: 420px;
+  animation: fadeIn 0.6s ease-out forwards;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+
+  height: auto; /* allow it to grow with content */
+}
+
+/* Disable scroll behind modal */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Inputs */
+.custom-input {
+  border: 1px solid #ccc;
+  background-color: #f0f1f2;
+  border-radius: 9999px;
+  padding: 8px;
+  width: 90%;
+  margin-top: 0px;
+  margin-bottom: 0.5rem;
+  padding-left: 8px;
+  outline: none;
+}
+
+.custom-input:focus {
+  border-color: #2e5bff;
+  outline: none;
+}
+
+/* Phone input */
+.custom-input2 {
+  border: 1px solid #ccc;
+  background-color: #f0f1f2;
+  border-radius: 9999px;
+  padding: 8px;
+  width: 90%;
+  margin-top: 0px;
+  margin-bottom: 0.5rem;
+  padding-left: 8px;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+.custom-input2:focus {
+  border-color: #2e5bff;
+  border: none;
+  outline: none;
+}
+
+/* Error input */
+.input-error {
+  border-color: red;
+  background-color: #ffe6e6;
+}
+
+/* Labels */
+.custom-label {
+  text-align: left;
+  font-size: 0.75rem;
+  color: #909090;
+  margin: 0px 0.5rem;
+}
+
+/* Submit Button */
+#btn {
+  position: relative;
+  width: 50%;
+  background: #2E5BFF;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 8px;
+  display: block;
+  margin: 0 auto; /* center button */
+}
+
+#btn.active {
+  background: #2E5BFF;
+  font-size: 14px;
+}
+
+#btnText {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 300;
+  z-index: 1;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Error text */
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+/* Checkbox animation (if needed) */
+.check-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.6s ease;
+}
+
+#btn.active .check-box {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.check-box svg {
+  width: 25px;
+  height: 25px;
+}
+
+.check-box svg path {
+  stroke: #9e9e9e;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: all 0.6s ease;
+}
+
+#btn.active .check-box svg path {
+  stroke-dashoffset: 0;
+}

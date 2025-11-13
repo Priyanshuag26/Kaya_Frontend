@@ -22,6 +22,7 @@
     "react-i18next": "^15.4.0",
     "react-icons": "^5.4.0",
     "react-markdown": "^9.0.3",
+    "react-phone-number-input": "^3.4.12",
     "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.3"
   },

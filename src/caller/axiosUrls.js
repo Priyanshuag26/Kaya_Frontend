@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Set the base URL for your API (Backend URL)
-const API_BASE_URL = 'http://127.0.0.1:8000'; // Adjust if backend runs on a different port
+const API_BASE_URL = import.meta.env.VITE_API_URL; // Adjust if backend runs on a different port
 
 // Create an axios instance with default configurations
 const axiosInstance = axios.create({
@@ -25,11 +25,15 @@ export const postAPI = async (url, data, token = null) => {
   try {
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
+    // Make the API request
     const response = await axiosInstance.post(url, data, { headers });
 
-    // Ensure response has correct structure
-    if (!response.data || !response.data.response) {
-      throw new Error("Invalid API response format");
+    // Log the full response to check its format
+    console.log("API Raw Response:", response);
+
+    // Check if the API response is correctly structured
+    if (!response.data || typeof response.data !== "object") {
+      throw new Error("Invalid API response format - Response is not an object");
     }
 
     return response.data;
@@ -38,6 +42,7 @@ export const postAPI = async (url, data, token = null) => {
 
     let errorMessage = "An error occurred while making the request";
     if (error.response) {
+      console.log("Error Response Data:", error.response.data);
       errorMessage = error.response.data?.detail || error.response.data?.message || errorMessage;
     } else if (error.request) {
       errorMessage = "No response from the server. Please check your connection.";
@@ -46,4 +51,5 @@ export const postAPI = async (url, data, token = null) => {
     throw new Error(errorMessage);
   }
 };
+
 export default axiosInstance;
